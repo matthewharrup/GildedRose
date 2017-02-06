@@ -94,8 +94,10 @@ public class GildedRoseTest {
         List<Item> items = new ArrayList<Item>();
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
         GildedRose gr = new GildedRose();
+        System.out.println( "Quality "+ items.get(0).getQuality() );
         gr.setItems(items);
         items =gr.updateQuality();
+        System.out.println( "Quality "+ items.get(0).getQuality() );
         assertEquals(items.get(0).getQuality(), 21);
         
 	}	
