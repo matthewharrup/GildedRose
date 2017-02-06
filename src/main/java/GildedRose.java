@@ -33,6 +33,7 @@ public class GildedRose {
     {
         for (int i = 0; i < items.size(); i++)
         {
+        	//if the quality is over 0 and it's not an item that improves with age, decrease quality
             if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) 
             {
                 if (items.get(i).getQuality() > 0)
@@ -44,7 +45,7 @@ public class GildedRose {
                 }
             }
             else
-            {
+            {//assumed that items are going up with age. Note that quality can't go over 50 for these 
                 if (items.get(i).getQuality() < 50)
                 {
                     items.get(i).setQuality(items.get(i).getQuality() + 1);
@@ -58,7 +59,7 @@ public class GildedRose {
                                 items.get(i).setQuality(items.get(i).getQuality() + 1);
                             }
                         }
-
+                        //this is a horrible pass-through incrementing backstage passes by 1+1+1 to get 3
                         if (items.get(i).getSellIn() < 6)
                         {
                             if (items.get(i).getQuality() < 50)
@@ -69,33 +70,33 @@ public class GildedRose {
                     }
                 }
             }
-
+            //decrease the sellin for non-legendary items
             if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
             {
                 items.get(i).setSellIn(items.get(i).getSellIn() - 1);
             }
-
+            //if past sell-by date
             if (items.get(i).getSellIn() < 0)
-            {
+            {  //and not "Aged Brie"
                 if (!"Aged Brie".equals(items.get(i).getName()))
-                {
+                { //and not a backstage pass
                     if (!"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName()))
-                    {
+                    { 
                         if (items.get(i).getQuality() > 0)
                         {
                             if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
-                            {
+                            {  //then reduce quality
                                 items.get(i).setQuality(items.get(i).getQuality() - 1);
                             }
                         }
                     }
                     else
-                    {
-                        items.get(i).setQuality(items.get(i).getQuality() - items.get(i).getQuality());
+                    { //it is a backstage pass, set it to zero
+                        items.get(i).setQuality(0);
                     }
                 }
                 else
-                {
+                { //it is "Aged Brie", increment quality
                     if (items.get(i).getQuality() < 50)
                     {
                         items.get(i).setQuality(items.get(i).getQuality() + 1);

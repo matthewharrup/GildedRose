@@ -127,7 +127,9 @@ public class GildedRoseTest {
         gr.setItems(items);
         items =gr.updateQuality();
         assertEquals(items.get(0).getQuality(), 0); 
-	}		
+	}	
+	
+
 	
 
 }
