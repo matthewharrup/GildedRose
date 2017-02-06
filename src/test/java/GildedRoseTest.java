@@ -131,6 +131,25 @@ public class GildedRoseTest {
         assertEquals(items.get(0).getQuality(), 0); 
 	}	
 	
+	@Test
+	public void testConjuredItemsDecreaseTwiceAsFast(){  
+        List<Item> items = new ArrayList<Item>();
+		items.add(new Item("Conjured Mana Cake", 3, 6));
+        GildedRose gr = new GildedRose();
+        gr.setItems(items);
+        items =gr.updateQuality();
+        assertEquals(items.get(0).getQuality(), 4); //4, because this would normally degrade by 1 except twice as fast as it's "conjured"
+	}		
+	@Test
+	public void testConjuredItemsDecreaseTwiceAsFastAfterSellin(){  
+        List<Item> items = new ArrayList<Item>();
+		items.add(new Item("Conjured Mana Cake", -1, 6));
+        GildedRose gr = new GildedRose();
+        gr.setItems(items);
+        items =gr.updateQuality();
+        assertEquals(items.get(0).getQuality(), 2); //2, because it's conjured and expired hence four times faster degradation
+	}		
+	
 
 	
 
