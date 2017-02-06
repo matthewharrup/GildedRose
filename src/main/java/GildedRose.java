@@ -60,7 +60,17 @@ public class GildedRose {
 			} else if ("Sulfuras, Hand of Ragnaros".equals(items.get(i).getName())) {
 				// do nothing; no change in quality for a legendary item
 
-			} else {
+			} else if ("Conjured Mana Cake".equals(items.get(i).getName())){
+				if (items.get(i).getQuality() > 0 && items.get(i).getSellIn() >=0 ) { 
+					//item is not beyond the sell by date, decrease quality by 2 as it is conjured
+					items.get(i).setQuality(items.get(i).getQuality() - 2);
+				} else if (items.get(i).getQuality() > 0 && items.get(i).getSellIn() <0 ) {
+					//item is after its sell by date, decrease quality by 4 as it is conjured and expired
+					items.get(i).setQuality(items.get(i).getQuality() - 4);
+				}
+				
+			} else 	{
+			
 			
 				// it is a standard item, decrease the quality but not to below
 				// zero
