@@ -24,9 +24,12 @@ public class GildedRose {
         updateQuality();
 }
 
-
+	public static void setItems (List<Item> newItems){
+		items= newItems;
+	}
 	
-    public static void updateQuality()
+	
+    public static List<Item> updateQuality()
     {
         for (int i = 0; i < items.size(); i++)
         {
@@ -100,6 +103,7 @@ public class GildedRose {
                 }
             }
         }
+        return items;
     }
 
 }
