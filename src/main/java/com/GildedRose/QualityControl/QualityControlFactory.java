@@ -6,7 +6,9 @@ public class QualityControlFactory {
 	
 	private static enum ItemQualityControl {
 		AGED_BRIE(ItemNames.AGED_BRIE_ITEM_NAME, new AgedBrieQC()),
-		SULFURAS(ItemNames.SULFURAS_ITEM_NAME, new SulfurasQC());
+		SULFURAS(ItemNames.SULFURAS_ITEM_NAME, new SulfurasQC()),
+		CONJURED(ItemNames.CONJURED_ITEM_NAME, new ConjuredQC()),
+		BACKSTAGE(ItemNames.BACKSTAGE_PASS_ITEM_NAME,  new BackstageQC());
 		
 		private String itemName;
 		private QualityControl qualityControl;
