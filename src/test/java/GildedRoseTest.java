@@ -152,7 +152,7 @@ public class GildedRoseTest {
         GildedRose gr = new GildedRose(qcf,sic);
         
         gr.updateQuality(items);
-        assertEquals(items.get(0).getQuality(), 2); //2, because it's conjured and expired hence four times faster degradation
+        assertEquals(items.get(0).getQuality(), 4); //this is ambiguous; you could argue because it's expired and conjured it should decrease 4x faster so should be down to 2 not 4. Consult the product owner!
 	}		
 	
 
