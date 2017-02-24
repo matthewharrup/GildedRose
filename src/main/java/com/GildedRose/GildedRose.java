@@ -1,9 +1,15 @@
+package com.GildedRose;
 import java.util.ArrayList;
+
 import java.util.List;
+import com.GildedRose.QualityControl.*;
+import com.GildedRose.SellInControl.*;
 
 public class GildedRose {
 
 	private static List<Item> items = null;
+	private QualityControlFactory qualityControlFactory;
+	private SellInControl sellInControl;
 
 	/**
 	 * @param args
@@ -20,14 +26,35 @@ public class GildedRose {
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
 		items.add(new Item("Conjured Mana Cake", 3, 6));
 
-		updateQuality();
+		//updateQuality();
+	}
+	
+	public GildedRose(QualityControlFactory qualityControl, SellInControl sellInControl) {
+		this.qualityControlFactory = qualityControl;
+		this.sellInControl = sellInControl;
 	}
 
 	public static void setItems(List<Item> newItems) {
 		items = newItems;
 	}
-
-	public static List<Item> updateQuality() {
+	
+	
+	public void updateQuality(List<Item> items) {
+		for (Item item : items) {
+			udpateSellInFor(item);
+			updateQualityFor(item);
+		}
+	}
+	
+	private void updateQualityFor(Item item) {
+		QualityControl qualityControl = qualityControlFactory.qualityControlFor(item);
+		qualityControl.updateQualityFor(item);
+	}	
+	
+	private void udpateSellInFor(Item item) {
+		sellInControl.updateSellInFor(item);
+	}
+/*	public static List<Item> updateQuality() {
 		for (int i = 0; i < items.size(); i++) {
 			// handle all quality changes;
 			if ("Aged Brie".equals(items.get(i).getName())) {
@@ -90,6 +117,6 @@ public class GildedRose {
 
 		}
 		return items;
-	}
+	}*/
 
 }

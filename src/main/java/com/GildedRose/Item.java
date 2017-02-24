@@ -1,3 +1,4 @@
+package com.GildedRose;
 
 public class Item {
     public String name;
